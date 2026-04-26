@@ -6,6 +6,7 @@ import jakarta.validation.constraints.FutureOrPresent;
 import jakarta.validation.constraints.NotBlank;
 import jakarta.validation.constraints.NotNull;
 import lombok.Data;
+import org.springframework.format.annotation.DateTimeFormat;
 
 import java.time.LocalDate;
 
@@ -23,6 +24,7 @@ public class Todo {
 
     @NotNull(message = "Ngày không được để trống")
     @FutureOrPresent(message = "Ngày phải là hiện tại hoặc tương lai")
+    @DateTimeFormat(pattern = "yyyy-MM-dd")
     private LocalDate dueDate;
 
     @NotNull(message = "Trạng thái không được để trống")
