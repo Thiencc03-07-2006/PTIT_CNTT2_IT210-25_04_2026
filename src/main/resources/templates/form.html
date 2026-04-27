@@ -17,46 +17,47 @@
                     <input type="hidden" th:field="*{id}">
                     <input type="hidden" th:if="${todo.id == null}" th:field="*{status}">
                 </div>
-                <div>
-                    <label for="content">Nội dung</label>
-                    <input class="form-control" type="text" name="content" id="content" th:field="*{content}">
+                <div class="form-group">
+                    <label for="content" th:text="#{label.content}">Nội dung</label>
+                    <input class="form-control" type="text" id="content" th:field="*{content}">
                     <small class="text-danger"
                            th:if="${#fields.hasErrors('content')}"
-                           th:errors="*{content}">Lỗi nội dung</small>
+                           th:errors="*{content}"></small>
                 </div>
-                <div>
-                    <label for="dueDate">Ngày hết hạn</label>
-                    <input class="form-control" type="date" name="dueDate" id="dueDate" th:field="*{dueDate}">
+                <div class="form-group">
+                    <label for="dueDate" th:text="#{label.duedate}">Ngày hết hạn</label>
+                    <input class="form-control" type="date" id="dueDate" th:field="*{dueDate}">
                     <small class="text-danger"
                            th:if="${#fields.hasErrors('dueDate')}"
-                           th:errors="*{dueDate}">Lỗi ngày tháng</small>
+                           th:errors="*{dueDate}"></small>
                 </div>
-                <div>
-                    <label for="priority">Độ ưu tiên</label>
+                <div class="form-group">
+                    <label for="priority" th:text="#{label.priority}">Độ ưu tiên</label>
                     <select class="form-control" th:field="*{priority}" id="priority">
                         <option th:each="p : ${priorities}"
                                 th:value="${p}"
-                                th:text="${p}">
+                                th:text="#{ 'label.' + ${p.toString().toLowerCase()} }">
                         </option>
                     </select>
                     <small class="text-danger"
                            th:if="${#fields.hasErrors('priority')}"
-                           th:errors="*{content}">Lỗi nội dung</small>
+                           th:errors="*{priority}"></small>
                 </div>
-                <div th:if="${todo.id != null}">
-                    <label for="status">Trạng thái</label>
+                <div class="form-group" th:if="${todo.id != null}">
+                    <label for="status" th:text="#{label.status}">Trạng thái</label>
                     <select class="form-control" th:field="*{status}" id="status">
                         <option th:each="s : ${statuses}"
                                 th:value="${s}"
-                                th:text="${s}">
+                                th:text="#{ 'label.' + ${s.toString().toLowerCase()} }">
                         </option>
                     </select>
                     <small class="text-danger"
                            th:if="${#fields.hasErrors('status')}"
-                           th:errors="*{content}">Lỗi nội dung</small>
+                           th:errors="*{status}"></small>
                 </div>
                 <div class="mt-4">
-                    <button type="submit" class="btn btn-primary">Submit</button>
+                    <button type="submit" class="btn btn-primary btn-block" th:text="#{button.submit}">Submit</button>
+                    <a th:href="@{/todo/list}" class="btn btn-secondary btn-block" th:text="#{label.action} == 'Action' ? 'Back' : 'Quay lại'">Quay lại</a>
                 </div>
             </form>
 

@@ -19,19 +19,19 @@ public class Todo {
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id;
 
-    @NotBlank(message = "Nội dung không được để trống")
+    @NotBlank(message = "{NotBlank.todo.content}")
     private String content;
 
-    @NotNull(message = "Ngày không được để trống")
-    @FutureOrPresent(message = "Ngày phải là hiện tại hoặc tương lai")
+    @NotNull(message = "{NotNull.todo.dueDate}")
+    @FutureOrPresent(message = "{FutureOrPresent.todo.dueDate}")
     @DateTimeFormat(pattern = "yyyy-MM-dd")
     private LocalDate dueDate;
 
-    @NotNull(message = "Trạng thái không được để trống")
+    @NotNull(message = "{NotNull.todo.status}")
     @Enumerated(EnumType.STRING)
     private Status status;
 
-    @NotNull(message = "Độ ưu tiên không được để trống")
+    @NotNull(message = "{NotNull.todo.priority}")
     @Enumerated(EnumType.STRING)
     private Priority priority;
 }
